@@ -1,0 +1,92 @@
+@use "animations";
+@use "variables" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: $canvas_color;
+  height: 100vh;
+  margin: 0;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.kite {
+  position: relative;
+
+  .kite-boundary {
+    height: $kite_height;
+    width: $kite_width;
+    background-color: $kite_color;
+    animation: kiteAnimation 1s ease-in-out infinite;
+
+    .kite-stick {
+      height: $kite_height;
+      width: $kite_width;
+
+      line {
+        stroke: $stick_color;
+        stroke-width: 2px;
+        filter: drop-shadow(2px 3px 3px rgba(0, 0, 0, 0.2));
+      }
+    }
+  }
+
+  .exhauster-container {
+    position: absolute;
+    top: $exhauster_pos_y;
+    width: $exhauster_width;
+    height: $exhauster_height;
+    display: flex;
+    justify-content: space-between;
+    > div {
+      display: flex;
+      .exhauster {
+        display: block;
+        height: 100%;
+        width: $exhauster_fire_width;
+        background-color: $exhauster_color;
+        animation: exhausterAnimation 0.5s infinite ease-in-out;
+
+        &.secondExhuaster {
+          margin-top: $second_exhauster_space;
+          margin-left: 5px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .tail {
+    margin-top: -35px;
+    width: $tail_width;
+
+    > div {
+      width: 100%;
+    }
+
+    .tail-boundary {
+      background-color: $tail_color;
+      height: $tail_height;
+      animation: tailAnimation 1s ease-in-out infinite;
+    }
+
+    .jointer {
+      margin-bottom: -1px;
+      background-color: $tail_color;
+      height: 20px;
+      animation: jointerAnimation 1s ease-in-out infinite;
+    }
+  }
+}
